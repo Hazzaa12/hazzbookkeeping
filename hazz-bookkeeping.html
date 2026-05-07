@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hazz Bookkeeping Services</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0d1f3c;
+    --navy-mid: #1a3560;
+    --navy-light: #2a4a80;
+    --gold: #c8a95a;
+    --gold-light: #e8c97a;
+    --white: #ffffff;
+    --off-white: #f7f6f2;
+    --text-dark: #0d1f3c;
+    --text-muted: #5a6a80;
+    --border: #e0ddd8;
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--text-dark);
+    background: var(--white);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(13, 31, 60, 0.97);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(200, 169, 90, 0.2);
+    padding: 0 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 68px;
+  }
+
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--white);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+
+  .nav-logo span { color: var(--gold); }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  .nav-cta {
+    background: var(--gold);
+    color: var(--navy) !important;
+    padding: 9px 22px;
+    border-radius: 2px;
+    font-weight: 500 !important;
+    letter-spacing: 0.04em;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--gold-light) !important; color: var(--navy) !important; }
+
+  /* HERO */
+  #home {
+    min-height: 100vh;
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 120px 5% 80px;
+  }
+
+  .hero-bg-lines {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(200,169,90,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(200,169,90,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .hero-accent {
+    position: absolute;
+    top: -120px;
+    right: -80px;
+    width: 520px;
+    height: 520px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(200,169,90,0.08) 0%, transparent 70%);
+  }
+
+  .hero-accent-2 {
+    position: absolute;
+    bottom: -80px;
+    left: 30%;
+    width: 340px;
+    height: 340px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(42,74,128,0.5) 0%, transparent 70%);
+  }
+
+  .hero-inner {
+    position: relative;
+    max-width: 700px;
+    animation: fadeUp 0.9s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--gold);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 5.5vw, 4.4rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.12;
+    margin-bottom: 28px;
+    letter-spacing: -0.01em;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.65);
+    font-weight: 300;
+    max-width: 520px;
+    margin-bottom: 48px;
+    line-height: 1.8;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--navy);
+    padding: 14px 32px;
+    border: none;
+    border-radius: 2px;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--white);
+    padding: 14px 32px;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 2px;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+    display: inline-block;
+  }
+
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+  .hero-stats {
+    position: absolute;
+    right: 5%;
+    bottom: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    animation: fadeUp 0.9s ease 0.3s both;
+  }
+
+  .stat {
+    text-align: right;
+    border-right: 2px solid var(--gold);
+    padding-right: 20px;
+  }
+
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  /* SECTIONS SHARED */
+  section { padding: 100px 5%; }
+
+  .section-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--gold);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+
+  .section-eyebrow::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.18;
+    margin-bottom: 16px;
+  }
+
+  .section-title.light { color: var(--white); }
+
+  .section-sub {
+    font-size: 1rem;
+    color: var(--text-muted);
+    max-width: 540px;
+    line-height: 1.8;
+  }
+
+  /* SERVICES */
+  #services {
+    background: var(--off-white);
+  }
+
+  .services-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 60px;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  .service-card {
+    background: var(--white);
+    padding: 44px 36px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.25s;
+    border: 1px solid var(--border);
+  }
+
+  .service-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  .service-card:hover { transform: translateY(-4px); }
+  .service-card:hover::after { transform: scaleX(1); }
+
+  .service-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--navy);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+    font-size: 1.3rem;
+  }
+
+  .service-title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 12px;
+  }
+
+  .service-desc {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.75;
+  }
+
+  .service-list {
+    list-style: none;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .service-list li {
+    font-size: 0.825rem;
+    color: var(--text-muted);
+    padding-left: 16px;
+    position: relative;
+  }
+
+  .service-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 9px;
+    width: 5px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  /* ABOUT */
+  #about {
+    background: var(--navy);
+    position: relative;
+    overflow: hidden;
+  }
+
+  #about::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 45%;
+    height: 100%;
+    background: var(--navy-mid);
+    clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
+  }
+
+  .about-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .about-left .section-sub { color: rgba(255,255,255,0.6); }
+
+  .about-body {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.85;
+    margin-top: 24px;
+  }
+
+  .about-body p + p { margin-top: 16px; }
+
+  .about-divider {
+    width: 48px;
+    height: 2px;
+    background: var(--gold);
+    margin: 32px 0;
+  }
+
+  .about-right {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .value-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+
+  .value-num {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--gold);
+    opacity: 0.4;
+    line-height: 1;
+    min-width: 40px;
+  }
+
+  .value-text h4 {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+
+  .value-text p {
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.75;
+  }
+
+  /* CONTACT */
+  #contact {
+    background: var(--white);
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 80px;
+    margin-top: 60px;
+    align-items: start;
+  }
+
+  .contact-info h3 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 16px;
+  }
+
+  .contact-info p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 36px;
+  }
+
+  .contact-detail {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .contact-detail:first-of-type { border-top: 1px solid var(--border); }
+
+  .contact-icon {
+    width: 36px;
+    height: 36px;
+    background: var(--navy);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+  }
+
+  .contact-detail-text {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+  }
+
+  .contact-detail-text strong {
+    display: block;
+    color: var(--navy);
+    font-weight: 500;
+    margin-bottom: 2px;
+  }
+
+  .contact-form {
+    background: var(--off-white);
+    padding: 48px;
+    border: 1px solid var(--border);
+  }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .form-group.full { grid-column: 1 / -1; }
+
+  label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--navy);
+  }
+
+  input, textarea, select {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--navy);
+    background: var(--white);
+    border: 1px solid var(--border);
+    padding: 12px 16px;
+    border-radius: 2px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  input:focus, textarea:focus, select:focus { border-color: var(--navy); }
+
+  textarea { resize: vertical; min-height: 120px; }
+
+  .form-submit {
+    width: 100%;
+    margin-top: 8px;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--navy);
+    padding: 48px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 24px;
+    border-top: 1px solid rgba(200,169,90,0.15);
+  }
+
+  .footer-logo {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    color: var(--white);
+  }
+
+  .footer-logo span { color: var(--gold); }
+
+  .footer-copy {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.35);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+
+  .footer-links a {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.4);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--gold); }
+
+  /* FORM SUCCESS */
+  .form-success {
+    display: none;
+    background: #edf7f0;
+    border: 1px solid #acd9bc;
+    color: #1e6b3a;
+    padding: 16px 20px;
+    border-radius: 2px;
+    font-size: 0.875rem;
+    margin-top: 16px;
+  }
+
+  @media (max-width: 768px) {
+    .hero-stats { display: none; }
+    .about-inner, .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+    #about::before { display: none; }
+    .form-row { grid-template-columns: 1fr; }
+    .contact-form { padding: 32px 24px; }
+    .services-header { flex-direction: column; align-items: flex-start; }
+    .services-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#home" class="nav-logo">Hazz <span>Bookkeeping</span></a>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-bg-lines"></div>
+  <div class="hero-accent"></div>
+  <div class="hero-accent-2"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Non-Profit Bookkeeping · Atlantic Canada</div>
+    <h1 class="hero-title">
+      Focus on your mission,<br>
+      <em>not your books.</em>
+    </h1>
+    <p class="hero-sub">
+      Specialized bookkeeping services built exclusively for non-profit organizations across Atlantic Canada. Clean records, confident reporting, and more time for the work that matters.
+    </p>
+    <div class="hero-buttons">
+      <a href="#contact" class="btn-primary">Book a Free Consultation</a>
+      <a href="#services" class="btn-outline">View Services</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">100%</div>
+      <div class="stat-label">Accuracy guaranteed</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">NPO</div>
+      <div class="stat-label">Specialists</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">24h</div>
+      <div class="stat-label">Response time</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-header">
+    <div>
+      <div class="section-eyebrow">What We Offer</div>
+      <h2 class="section-title">Services built for<br>non-profit organizations</h2>
+    </div>
+    <p class="section-sub">From day-to-day transaction recording to fund tracking and reporting — bookkeeping built around how non-profits actually operate.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">📒</div>
+      <div class="service-title">Bookkeeping</div>
+      <p class="service-desc">Accurate data entry and bank reconciliation so your organization's records are always clean, current, and audit-ready. No backlogs. No surprises.</p>
+      <ul class="service-list">
+        <li>Transaction recording &amp; categorization</li>
+        <li>Bank &amp; account reconciliation</li>
+        <li>Month-end financial statements</li>
+      </ul>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📊</div>
+      <div class="service-title">Budgeting &amp; Tracking</div>
+      <p class="service-desc">Build a clear financial roadmap for your organization. We help you manage grant budgets, track restricted funds, and plan confidently for the future.</p>
+      <ul class="service-list">
+        <li>Grant &amp; fund budget creation</li>
+        <li>Variance analysis &amp; reporting</li>
+        <li>Cash flow forecasting</li>
+      </ul>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">⚙️</div>
+      <div class="service-title">Process Automation</div>
+      <p class="service-desc">Free up your team's time by automating repetitive financial tasks. We streamline workflows so your organization can focus on impact, not admin.</p>
+      <ul class="service-list">
+        <li>Accounting software setup &amp; optimization</li>
+        <li>Automated invoicing &amp; payments</li>
+        <li>Workflow design &amp; documentation</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-inner">
+    <div class="about-left">
+      <div class="section-eyebrow">About Us</div>
+      <h2 class="section-title light">Numbers you can<br>trust. Every time.</h2>
+      <div class="about-divider"></div>
+      <div class="about-body">
+        <p>Hazz Bookkeeping Services is an Atlantic Canada-based bookkeeping firm dedicated to helping non-profit organizations maintain clean, accurate financial records — without the overhead of a full-time accountant.</p>
+        <p>We understand the unique financial landscape of non-profits: restricted funds, grant reporting requirements, and the need for transparency to boards and donors. With a commerce background in Accounting and Marketing and a CPA designation in progress, we bring both rigour and a genuine commitment to the sector.</p>
+      </div>
+    </div>
+    <div class="about-right">
+      <div class="value-item">
+        <div class="value-num">01</div>
+        <div class="value-text">
+          <h4>Non-Profit Focused</h4>
+          <p>We understand restricted funds, grant reporting, and donor accountability. This isn't generic bookkeeping — it's built for your sector.</p>
+        </div>
+      </div>
+      <div class="value-item">
+        <div class="value-num">02</div>
+        <div class="value-text">
+          <h4>Accuracy First</h4>
+          <p>Every entry is reviewed and reconciled. Your financial records are only useful if they're correct — especially when reporting to funders.</p>
+        </div>
+      </div>
+      <div class="value-item">
+        <div class="value-num">03</div>
+        <div class="value-text">
+          <h4>Timely Delivery</h4>
+          <p>Reports and filings delivered on schedule — so you're never scrambling before a board meeting or grant deadline.</p>
+        </div>
+      </div>
+      <div class="value-item">
+        <div class="value-num">04</div>
+        <div class="value-text">
+          <h4>Transparent Pricing</h4>
+          <p>Flat-rate packages with no hidden fees — because we know budgets in the non-profit sector are tight and every dollar counts.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-eyebrow">Get in Touch</div>
+  <h2 class="section-title">Let's talk about<br>your organization</h2>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <h3>Ready to get your books in order?</h3>
+      <p>Reach out for a free 30-minute consultation. We'll discuss your current setup, your reporting needs, and how we can help your organization stay financially healthy.</p>
+      <div class="contact-detail">
+        <div class="contact-icon">📍</div>
+        <div class="contact-detail-text">
+          <strong>Location</strong>
+          Atlantic Canada (serving NS, NB, PEI &amp; NL)
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-icon">📧</div>
+        <div class="contact-detail-text">
+          <strong>Email</strong>
+          Hazzaa7876@gmail.com
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-icon">⏱</div>
+        <div class="contact-detail-text">
+          <strong>Response Time</strong>
+          Within 24 hours on business days
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="fname">First Name</label>
+          <input type="text" id="fname" placeholder="John">
+        </div>
+        <div class="form-group">
+          <label for="lname">Last Name</label>
+          <input type="text" id="lname" placeholder="Smith">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="hello@yourorganization.ca">
+      </div>
+      <div class="form-group">
+        <label for="service">Service Interested In</label>
+        <select id="service">
+          <option value="">Select a service...</option>
+          <option>Bookkeeping</option>
+          <option>Budgeting &amp; Tracking</option>
+          <option>Process Automation</option>
+          <option>Not sure — let's talk</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" placeholder="Tell us about your organization, how many staff you have, and what your current bookkeeping setup looks like..."></textarea>
+      </div>
+      <button class="btn-primary form-submit" onclick="submitForm()">Send Message</button>
+      <div class="form-success" id="form-success">
+        ✓ Message sent! We'll be in touch within 24 hours.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Hazz <span>Bookkeeping</span> Services</div>
+  <ul class="footer-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="footer-copy">© 2026 Hazz Bookkeeping Services. All rights reserved.</div>
+</footer>
+
+<script>
+  // Smooth active nav on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current
+        ? 'var(--gold)'
+        : (a.classList.contains('nav-cta') ? '' : 'rgba(255,255,255,0.75)');
+    });
+  });
+
+  // Intersection observer fade-in
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.service-card, .value-item, .contact-info, .contact-form').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
+  });
+
+  // Form submit demo
+  function submitForm() {
+    const email = document.getElementById('email').value;
+    if (!email) { alert('Please enter your email address.'); return; }
+    document.getElementById('form-success').style.display = 'block';
+    document.querySelector('.form-submit').textContent = 'Sent ✓';
+    document.querySelector('.form-submit').style.background = '#3a7d54';
+    document.querySelector('.form-submit').style.cursor = 'default';
+  }
+</script>
+</body>
+</html>
